@@ -36,6 +36,7 @@ resource "aws_instance" "app" {
   subnet_id              = data.terraform_remote_state.network.outputs.private_subnet_ids[count.index % length(data.terraform_remote_state.network.outputs.private_subnet_ids)]
   vpc_security_group_ids = data.terraform_remote_state.network.outputs.app_instance_security_group_ids
 
+/*
   user_data = <<-EOF
     #!/bin/bash
     sudo yum update -y
@@ -44,6 +45,7 @@ resource "aws_instance" "app" {
     sudo systemctl start httpd
     echo "<html><body><div>Hello, world!</div></body></html>" > /var/www/html/index.html
     EOF
+*/
 
   tags = {
     Project = data.terraform_remote_state.network.outputs.project_tag
